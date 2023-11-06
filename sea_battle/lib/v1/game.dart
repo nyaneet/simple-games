@@ -1,4 +1,4 @@
-import 'package:sea_battle/rounds.dart';
+import 'package:sea_battle/v1/rounds.dart';
 
 class Game {
   final Rounds _rounds;

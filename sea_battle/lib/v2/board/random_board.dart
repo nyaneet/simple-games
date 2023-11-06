@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:sea_battle/board/board.dart';
-import 'package:sea_battle/cell/cell.dart';
+import 'package:sea_battle/v2/board/board.dart';
+import 'package:sea_battle/v2/cell/cell.dart';
 
 class RandomBoard implements Board {
   final int _size;

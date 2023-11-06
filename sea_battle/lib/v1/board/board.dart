@@ -1,4 +1,4 @@
-import 'package:sea_battle/cell/cell.dart';
+import 'package:sea_battle/v1/cell/cell.dart';
 
 abstract interface class Board {
   /// Returns cell grid of the board as a value

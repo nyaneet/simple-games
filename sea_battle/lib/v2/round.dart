@@ -1,50 +1,28 @@
-import 'package:sea_battle/board/board.dart';
-import 'package:sea_battle/cell/cell.dart';
-import 'package:sea_battle/cells_view.dart';
-import 'package:sea_battle/pick/pick.dart';
+import 'package:sea_battle/v2/board/board.dart';
+import 'package:sea_battle/v2/cell/cell.dart';
+import 'package:sea_battle/v2/cells_view.dart';
+import 'package:sea_battle/v2/pick/pick.dart';
 
 class Round {
   final CellsView _cellsView;
-  final Board _playerBoard;
-  final Board _enemyBoard;
   final Pick _playerPick;
   final Pick _enemyPick;
 
   Round({
     required CellsView cellsView,
-    required Board playerBoard,
-    required Board enemyBoard,
     required Pick playerPick,
     required Pick enemyPick,
   })  : _cellsView = cellsView,
-        _playerBoard = playerBoard,
-        _enemyBoard = enemyBoard,
         _playerPick = playerPick,
         _enemyPick = enemyPick;
-
-  Round copyWith({
-    CellsView? cellsView,
-    Board? playerBoard,
-    Pick? playerPick,
-    Board? enemyBoard,
-    Pick? enemyPick,
-  }) {
-    return Round(
-      cellsView: cellsView ?? _cellsView,
-      playerBoard: playerBoard ?? _playerBoard,
-      playerPick: playerPick ?? _playerPick,
-      enemyBoard: enemyBoard ?? _enemyBoard,
-      enemyPick: enemyPick ?? _enemyPick,
-    );
-  }
 
   /// Causes a selection of attack cells for each player
   ///
   /// Returns new boards of each player
-  (List<List<Cell>>, List<List<Cell>>) value() {
-    final playerGrid = _playerBoard.value();
-    final enemyGrid = _enemyBoard.value();
-
+  (List<List<Cell>>, List<List<Cell>>) value(
+    List<List<Cell>> playerGrid,
+    List<List<Cell>> enemyGrid,
+  ) {
     final playerView = _cellsView.render(playerGrid);
     print('Your board:\n$playerView');
     final enemyView = _cellsView.render(enemyGrid);

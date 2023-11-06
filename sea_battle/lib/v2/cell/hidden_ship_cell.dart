@@ -1,4 +1,4 @@
-import 'package:sea_battle/cell/cell.dart';
+import 'package:sea_battle/v2/cell/cell.dart';
 
 class HiddenShipCell implements Cell {
   final bool _isAttacked;

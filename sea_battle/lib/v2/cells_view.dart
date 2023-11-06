@@ -1,4 +1,4 @@
-import 'package:sea_battle/cell/cell.dart';
+import 'package:sea_battle/v2/cell/cell.dart';
 
 class CellsView {
   final Map<int, String> _viewMap;

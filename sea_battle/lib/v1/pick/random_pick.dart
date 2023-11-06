@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:sea_battle/pick/pick.dart';
+import 'package:sea_battle/v1/pick/pick.dart';
 
 class RandomPick implements Pick {
   final int _max;

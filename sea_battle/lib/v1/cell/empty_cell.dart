@@ -1,4 +1,4 @@
-import 'package:sea_battle/cell/cell.dart';
+import 'package:sea_battle/v1/cell/cell.dart';
 
 class EmptyCell implements Cell {
   final bool _isAttacked;

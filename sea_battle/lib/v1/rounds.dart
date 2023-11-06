@@ -1,5 +1,5 @@
-import 'package:sea_battle/board/player_board.dart';
-import 'package:sea_battle/round.dart';
+import 'package:sea_battle/v1/board/player_board.dart';
+import 'package:sea_battle/v1/round.dart';
 
 class Rounds {
   final Round _currentRound;
