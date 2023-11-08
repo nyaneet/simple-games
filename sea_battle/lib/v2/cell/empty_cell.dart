@@ -6,8 +6,8 @@ class EmptyCell implements Cell {
   EmptyCell({bool isAttacked = false}) : _isAttacked = isAttacked;
 
   @override
-  int value() {
-    return _isAttacked ? 1 : 0;
+  CellType value() {
+    return _isAttacked ? CellType.miss : CellType.water;
   }
 
   @override
@@ -18,11 +18,6 @@ class EmptyCell implements Cell {
   @override
   bool isPickable() {
     return !_isAttacked;
-  }
-
-  @override
-  EmptyCell copy() {
-    return EmptyCell(isAttacked: _isAttacked);
   }
 
   @override

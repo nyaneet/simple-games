@@ -6,8 +6,8 @@ class ShipCell implements Cell {
   ShipCell({bool isAttacked = false}) : _isAttacked = isAttacked;
 
   @override
-  int value() {
-    return _isAttacked ? 3 : 2;
+  CellType value() {
+    return _isAttacked ? CellType.hit : CellType.ship;
   }
 
   @override
@@ -18,11 +18,6 @@ class ShipCell implements Cell {
   @override
   bool isPickable() {
     return !_isAttacked;
-  }
-
-  @override
-  ShipCell copy() {
-    return ShipCell(isAttacked: _isAttacked);
   }
 
   @override

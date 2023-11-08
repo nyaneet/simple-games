@@ -1,11 +1,11 @@
 import 'package:sea_battle/v2/cell/cell.dart';
 
 class CellsView {
-  final Map<int, String> _viewMap;
+  final Map<CellType, String> _cellViewsMap;
 
   CellsView({
-    required viewMap,
-  }) : _viewMap = viewMap;
+    required Map<CellType, String> viewMap,
+  }) : _cellViewsMap = viewMap;
 
   /// Returns pretty view of cell grid
   String render(List<List<Cell>> cellGrid) {
@@ -21,7 +21,7 @@ class CellsView {
     var rowIdx = 0;
     final prettyGridView = cellGrid.fold('#${colMarks.join()}', (prev, row) {
       final prettyRowView = row.fold('\n${rowMarks[rowIdx++]}', (prev, cell) {
-        return prev + (_viewMap[cell.value()] ?? '?');
+        return prev + (_cellViewsMap[cell.value()] ?? '?');
       });
       return prev + prettyRowView;
     });

@@ -1,47 +1,55 @@
 import 'package:sea_battle/v2/board/board.dart';
-import 'package:sea_battle/v2/cell/cell.dart';
-import 'package:sea_battle/v2/round.dart';
+import 'package:sea_battle/v2/player.dart';
 
 class Rounds {
-  final Round _round;
-  final Board _playerBoard;
-  final Board _enemyBoard;
+  final Player _firstPlayer;
+  final Player _secondPlayer;
 
-  Rounds({
-    required Round round,
-    required Board playerBoard,
-    required Board enemyBoard,
-  })  : _round = round,
-        _playerBoard = playerBoard,
-        _enemyBoard = enemyBoard;
+  Rounds({required Player firstPlayer, required Player secondPlayer})
+      : _firstPlayer = firstPlayer,
+        _secondPlayer = secondPlayer;
 
   /// Plays rounds until one player loses
   ///
-  /// Returns true if main player has won
-  bool result() {
-    var (playerGrid, enemyGrid) = (_playerBoard.value(), _enemyBoard.value());
+  /// Returns the number of the winning player
+  int result() {
+    var firstPlayerBoard = _firstPlayer.setup();
+    var secondPlayerBoard = _secondPlayer.setup();
 
+    var roundNumber = 0;
     while (true) {
-      final enemyIsAlive = _playerIsAlive(enemyGrid);
-      final playerIsAlive = _playerIsAlive(playerGrid);
+      var playerBoard =
+          roundNumber.isEven ? firstPlayerBoard : secondPlayerBoard;
+      var opponentBoard =
+          roundNumber.isEven ? secondPlayerBoard : firstPlayerBoard;
 
-      if (!enemyIsAlive) {
-        return true;
-      }
-      if (!playerIsAlive) {
-        return false;
-      }
+      final player = roundNumber.isEven ? _firstPlayer : _secondPlayer;
 
-      (playerGrid, enemyGrid) = _round.value(playerGrid, enemyGrid);
+      player.view(
+        playerBoard: playerBoard,
+        opponentBoard: opponentBoard,
+      );
+
+      (playerBoard, opponentBoard) = player.pick(
+        playerBoard: playerBoard,
+        opponentBoard: opponentBoard,
+      );
+
+      if (!_playerIsAlive(opponentBoard)) return roundNumber.isEven ? 0 : 1;
+
+      firstPlayerBoard = roundNumber.isEven ? playerBoard : opponentBoard;
+      secondPlayerBoard = roundNumber.isEven ? opponentBoard : playerBoard;
+
+      roundNumber++;
     }
   }
 
   /// Returns true if player has a valuable cell
-  bool _playerIsAlive(List<List<Cell>> playerGrid) {
-    return playerGrid.any(
-      (row) => row.any(
-        (cell) => cell.isValuable(),
-      ),
-    );
+  bool _playerIsAlive(Board playerBoard) {
+    return playerBoard.value().any(
+          (row) => row.any(
+            (cell) => cell.isValuable(),
+          ),
+        );
   }
 }
