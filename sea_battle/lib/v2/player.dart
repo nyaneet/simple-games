@@ -8,11 +8,11 @@ class Player {
   final ViewRound _viewRound;
   final PickRound _pickRound;
 
-  Player(
-      {required SetupRound setupRound,
-      required ViewRound viewRound,
-      required PickRound pickRound})
-      : _setupRound = setupRound,
+  Player({
+    required SetupRound setupRound,
+    required ViewRound viewRound,
+    required PickRound pickRound,
+  })  : _setupRound = setupRound,
         _viewRound = viewRound,
         _pickRound = pickRound;
 

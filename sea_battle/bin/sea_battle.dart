@@ -43,7 +43,7 @@ void main() {
       ),
     ),
     pickRound: PickRound(
-      playerPick: InputPick(max: size),
+      pick: InputPick(max: size),
     ),
   );
 
@@ -57,7 +57,7 @@ void main() {
     ),
     viewRound: HiddenViewRound(message: 'Opponent makes a move...'),
     pickRound: PickRound(
-      playerPick: RandomPick(max: size),
+      pick: RandomPick(max: size),
     ),
   );
 

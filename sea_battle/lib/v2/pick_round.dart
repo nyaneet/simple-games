@@ -3,19 +3,20 @@ import 'package:sea_battle/v2/board/board.dart';
 import 'package:sea_battle/v2/pick/pick.dart';
 
 class PickRound {
-  final Pick _playerPick;
+  final Pick _pick;
 
   PickRound({
-    required Pick playerPick,
-  }) : _playerPick = playerPick;
+    required Pick pick,
+  }) : _pick = pick;
 
   (Board, Board) complete({
     required Board playerBoard,
     required Board opponentBoard,
   }) {
-    final playerPick = _playerPick.pick();
-    final newOpponentGrid = _pickedGrid(opponentBoard.value(), playerPick);
-
+    final newOpponentGrid = _pickedGrid(
+      opponentBoard.value(),
+      _pick.pick(),
+    );
     return (
       playerBoard,
       opponentBoard.restructured(cellGrid: newOpponentGrid),
