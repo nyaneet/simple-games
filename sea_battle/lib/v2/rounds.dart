@@ -13,18 +13,12 @@ class Rounds {
   ///
   /// Returns the number of the winning player
   int result() {
-    var firstPlayerBoard = _firstPlayer.setup();
-    var secondPlayerBoard = _secondPlayer.setup();
+    var (player, opponent) = (_firstPlayer, _secondPlayer);
+    var (playerBoard, opponentBoard) = (player.setup(), opponent.setup());
 
     var roundNumber = 0;
     while (true) {
-      var playerBoard =
-          roundNumber.isEven ? firstPlayerBoard : secondPlayerBoard;
-      var opponentBoard =
-          roundNumber.isEven ? secondPlayerBoard : firstPlayerBoard;
-
-      final player = roundNumber.isEven ? _firstPlayer : _secondPlayer;
-
+      // make the current player's move
       player.view(
         playerBoard: playerBoard,
         opponentBoard: opponentBoard,
@@ -35,11 +29,12 @@ class Rounds {
         opponentBoard: opponentBoard,
       );
 
+      // check if the opponent has lost
       if (!_playerIsAlive(opponentBoard)) return roundNumber.isEven ? 0 : 1;
 
-      firstPlayerBoard = roundNumber.isEven ? playerBoard : opponentBoard;
-      secondPlayerBoard = roundNumber.isEven ? opponentBoard : playerBoard;
-
+      // pass the turn to the next player
+      (player, opponent) = (opponent, player);
+      (playerBoard, opponentBoard) = (opponentBoard, playerBoard);
       roundNumber++;
     }
   }
