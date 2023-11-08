@@ -7,6 +7,7 @@ class Game {
 
   /// Starts the game and displays the result
   void play() {
-    print(_rounds.result() ? 'Victory!' : 'Defeat...');
+    final winner = _rounds.result();
+    print('Player ${winner + 1} won.');
   }
 }
