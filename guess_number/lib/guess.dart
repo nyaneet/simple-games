@@ -4,7 +4,6 @@ class Guess {
   final int _max;
 
   Guess({required max}) : _max = max;
-  Guess.from(Guess other) : this(max: other._max);
 
   int value() {
     return _parse();
