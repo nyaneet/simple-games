@@ -1,23 +1,17 @@
 import 'package:guess_number/attempt.dart';
 
 class Attempts {
-  final int _left;
-  final Attempt _current;
+  final int _max;
+  final Attempt _attempt;
 
-  Attempts({required int left, required Attempt current})
-      : _left = left,
-        _current = current;
+  Attempts({required int max, required Attempt attempt})
+      : _max = max,
+        _attempt = attempt;
 
   bool matches() {
-    print('Attempts left: $_left.');
-    if (_left > 0 && _current.match()) {
-      return true;
-    }
-    if (_left > 0) {
-      return Attempts(
-        left: _left - 1,
-        current: Attempt.from(_current),
-      ).matches();
+    for (var i = 0; i < _max; i++) {
+      print('Attempts left: ${_max - i}');
+      if (_attempt.match()) return true;
     }
     return false;
   }

@@ -13,7 +13,7 @@ void main() {
 
   final game = Game(
     attempts: Attempts(
-      current: Attempt(
+      attempt: Attempt(
         hintDiff: HintDifference(
           diff: Difference(
             secret: Secret.from(secret),
@@ -21,7 +21,7 @@ void main() {
           ),
         ),
       ),
-      left: maxTries,
+      max: maxTries,
     ),
     secret: Secret.from(secret),
   );
